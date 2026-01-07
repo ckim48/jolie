@@ -1,192 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Business, Humanities & Art</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jolie Chung | Business, Humanities & Art</title>
+  <link href="assets/favicon.png" rel="icon">
+  <link href="assets/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <style>
-        :root {
-            --primary-color: #6d5b98; 
-            --accent-color: #e8d5cc;  
-            --dark-text: #333333;
-            --light-bg: #fdfcfb;
-        }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dark-text);
-            background-color: var(--light-bg);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --primary-color: #6d5b98;
+      --accent-color: #e8d5cc;
+      --dark-text: #333333;
+      --light-bg: #fdfcfb;
+      --nav-active: #6d5b98;
+      --nav-ink: #1a1a1a;
+      --nav-muted: rgba(26,26,26,.65);
+      --shadow: 0 18px 38px rgba(0,0,0,.10);
+    }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: #1a1a1a;
-        }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
 
-        /* --- Hero Section with Animation --- */
-        .hero-section {
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(-45deg, #fdfcfb, #f3f0f7, #fdf4f0, #ffffff);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    h1, h2, h3 { font-family: "Playfair Display", serif; color: #1a1a1a; }
 
-        .hero-title { font-size: 2.75rem; line-height: 1.2; margin-bottom: 1.5rem; }
-        .hero-img-frame { position: relative; max-width: 400px; margin: 0 auto; }
-        .hero-img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; position: relative; z-index: 2; }
-        .hero-img-frame::after {
-            content: ""; position: absolute; top: 15px; right: -15px; width: 100%; height: 100%;
-            border: 1.5px solid var(--accent-color); border-radius: 12px; z-index: 1;
-        }
+    /* --- Navbar & ScrollSpy --- */
+    .navbar {
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1050;
+      background-color: rgba(255, 255, 255, 0.8) !important;
+    }
 
-        /* --- New About Section Layout --- */
-        .about-img-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        .about-img-item {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-        .about-img-item:hover { transform: scale(1.05); }
-        .tall-img { grid-row: span 2; height: 415px; }
+    .nav-link {
+      color: var(--nav-muted) !important;
+      padding: .5rem 1.1rem !important;
+      border-radius: 999px;
+      transition: .3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin: 0 4px;
+    }
 
-        /* --- Cards & Buttons --- */
-        .card-pillar {
-            border: none; border-radius: 16px; padding: 2rem;
-            background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            transition: 0.3s;
-        }
-        .card-pillar:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
-        
-        .icon-circle {
-            width: 50px; height: 50px; background: #f8f9fa; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.25rem; color: var(--primary-color);
-        }
+    /* --- HERO SECTION WITH FANCY ANIMATION --- */
+    .hero-section {
+      padding: 140px 0;
+      position: relative;
+      overflow: hidden;
+      background-color: #fdfcfb;
+    }
 
-        .btn-primary-custom { background-color: var(--dark-text); color: white; border: none; padding: 10px 28px; border-radius: 6px; }
-        .btn-primary-custom:hover { background-color: var(--primary-color); color: white; }
-    </style>
+    /* Floating Animated Aura Blobs */
+    .hero-section::before,
+    .hero-section::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 1;
+      opacity: 0.4;
+      animation: floatAura 25s infinite alternate ease-in-out;
+    }
+
+    .hero-section::before {
+      background: var(--primary-color);
+      top: -10%;
+      left: -5%;
+    }
+
+    .hero-section::after {
+      background: var(--accent-color);
+      bottom: -10%;
+      right: -5%;
+      animation-delay: -12s;
+      width: 600px;
+      height: 600px;
+    }
+
+    @keyframes floatAura {
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      33% { transform: translate(5vw, 10vh) rotate(10deg) scale(1.1); }
+      66% { transform: translate(-2vw, 15vh) rotate(-10deg) scale(0.9); }
+      100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    }
+
+    .hero-content-wrapper {
+      position: relative;
+      z-index: 10; /* Ensures text is above the animated background */
+    }
+
+    .hero-title { font-size: 2.75rem; line-height: 1.2; margin-bottom: 1.5rem; }
+    .hero-img-frame { position: relative; max-width: 400px; margin: 0 auto; }
+    .hero-img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; position: relative; z-index: 2; }
+    .hero-img-frame::after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      right: -15px;
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid var(--accent-color);
+      border-radius: 12px;
+      z-index: 1;
+    }
+
+    .btn-primary-custom {
+      background-color: var(--dark-text);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 10px;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .btn-primary-custom:hover { background-color: var(--primary-color); color: white; transform: translateY(-2px); }
+
+    /* --- About --- */
+    .about-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+    }
+    .about-img-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .about-img-item { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
+    .tall-img { grid-row: span 2; height: 415px; }
+
+    /* --- Projects --- */
+    .project-row { padding: 70px 0; align-items: center; }
+    .media-shell { max-width: 520px; margin: 0 auto; }
+    .project-media { border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); background: #fff; }
+    .project-media img { width: 100%; height: auto; display: block; }
+    .project-number { font-family: "Playfair Display", serif; font-size: 4rem; color: rgba(109, 91, 152, 0.12); position: absolute; top: -26px; left: -10px; z-index: -1; }
+    .category-label { color: var(--primary-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; display: block; margin-bottom: 1rem; }
+
+    /* --- MORE SECTION --- */
+    .more-columns {
+      column-count: 3;
+      column-gap: 20px;
+    }
+
+    .more-item {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.4s ease;
+      cursor: pointer;
+      display: block;
+    }
+
+    .more-item:hover { transform: translateY(-8px); }
+    .more-item img { width: 100%; height: auto; display: block; }
+
+    @media (max-width: 992px) { .more-columns { column-count: 2; } }
+    @media (max-width: 576px) { .more-columns { column-count: 1; } }
+  </style>
 </head>
-<body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">PORTFOLIO</a>
-            <div class="ms-auto d-none d-lg-block">
-                <a href="#home" class="nav-link d-inline px-3 fw-semibold">Home</a>
-                <a href="#about" class="nav-link d-inline px-3 fw-semibold">About</a>
-                <a href="#projects" class="nav-link d-inline px-3 fw-semibold">Work</a>
-                <a href="#contact" class="nav-link d-inline px-3 fw-semibold">Contact</a>
-            </div>
+<body data-bs-spy="scroll" data-bs-target="#navbarMain" data-bs-offset="100">
+
+  <nav id="navbarMain" class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">Jolie Chung</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#activities">Achievements</a>
+          <a class="nav-link" href="#more">More</a>
+          <a class="nav-link" href="#contact">Contact</a>
         </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 
-    <section id="home" class="hero-section">
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
-                    <p class="text-uppercase fw-bold small text-muted mb-2">Student & Visionary</p>
-                    <h1 class="hero-title">Blending <span style="color: var(--primary-color);">Business</span> with Artistic Expression.</h1>
-                    <p class="text-muted lead mb-4">Exploring how strategy and humanity intersect through the lens of visual storytelling.</p>
-                    <div class="d-flex gap-3 mt-4">
-                        <a href="#projects" class="btn btn-primary-custom">Explore Projects</a>
-                    </div>
-                </div>
-                <div class="col-lg-5 offset-lg-1 text-center" data-aos="zoom-in" data-aos-duration="1200">
-                    <div class="hero-img-frame">
-                        <img src="assets/myself.jpeg" alt="Hero Photo" class="hero-img shadow-sm">
-                    </div>
-                </div>
-            </div>
+  <section id="home" class="hero-section">
+    <div class="container hero-content-wrapper">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <p class="text-uppercase fw-bold small text-muted mb-2">Student & Visionary</p>
+          <h1 class="hero-title">
+            Blending <span style="color: var(--primary-color);">Business</span> with Artistic Expression.
+          </h1>
+          <p class="text-muted lead mb-4">Exploring how strategy and humanity intersect through the lens of visual storytelling.</p>
+          <div class="d-flex gap-3 mt-4">
+            <a href="#activities" class="btn btn-primary-custom">View My Work <i class="bi bi-arrow-down ms-2"></i></a>
+          </div>
         </div>
-    </section>
-
-    <section id="about" class="py-5 bg-white">
-        <div class="container py-5">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6" data-aos="fade-up">
-                    <h2 class="display-5 mb-4">Curiosity at the Core</h2>
-                    <p class="text-muted">I am a high school student with a deep fascination for how the world works—both in the boardroom and in the art studio. My journey started with a simple question: <em>How can we make business more human?</em></p>
-                    <p class="text-muted mb-4">Through my studies in humanities and my practice in visual arts, I've learned that strategy is nothing without empathy. Whether I'm analyzing economic trends or painting a canvas, my goal is always to bridge the gap between logical systems and human emotions.</p>
-                    <div class="row g-3">
-                        <div class="col-6"><i class="bi bi-check-circle text-primary me-2"></i> Business Strategy</div>
-                        <div class="col-6"><i class="bi bi-check-circle text-primary me-2"></i> Historical Analysis</div>
-                        <div class="col-6"><i class="bi bi-check-circle text-primary me-2"></i> Digital Arts</div>
-                        <div class="col-6"><i class="bi bi-check-circle text-primary me-2"></i> Social Advocacy</div>
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="about-img-grid">
-                        <img src="assets/me1.jpeg" alt="Me 1" class="about-img-item tall-img shadow">
-                        <img src="assets/me2.jpeg" alt="Me 2" class="about-img-item shadow">
-                        <img src="assets/me3.jpeg" alt="Me 3" class="about-img-item shadow">
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-5 offset-lg-1 text-center" data-aos="zoom-in">
+          <div class="hero-img-frame">
+            <img src="assets/myself.jpeg" alt="Hero Photo" class="hero-img shadow-sm" />
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="py-5" style="background-color: #fdfcfb;">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card card-pillar">
-                        <div class="icon-circle"><i class="bi bi-briefcase"></i></div>
-                        <h5>Business Strategy</h5>
-                        <p class="small text-muted mb-0">Analyzing economic trends and sustainable business models.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card card-pillar">
-                        <div class="icon-circle"><i class="bi bi-globe-americas"></i></div>
-                        <h5>Humanities</h5>
-                        <p class="small text-muted mb-0">Studying culture and behavior to keep innovation human-centered.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card card-pillar">
-                        <div class="icon-circle"><i class="bi bi-palette"></i></div>
-                        <h5>Visual Arts</h5>
-                        <p class="small text-muted mb-0">Communicating complex ideas through digital and fine arts.</p>
-                    </div>
-                </div>
-            </div>
+  <section id="about" class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7" data-aos="fade-up">
+          <div class="about-card">
+            <h2 class="display-5 mb-4">Curiosity at the Core</h2>
+            <p class="text-muted mb-3">
+              I’m a high school student drawn to how people think, what motivates choices, and how ideas become real impact.
+              I like exploring both the analytical side of business and the expressive side of visual storytelling.
+            </p>
+            <p class="text-muted mb-3">
+              My journey started with a simple question: <em>How can we make business more human?</em>
+              That question continues to guide my work—whether I’m researching a topic, building a project, or creating art.
+            </p>
+            <p class="text-muted mb-0">
+              I’m interested in the space where strategy meets empathy: designing experiences that feel clear, thoughtful, and meaningful.
+              I care about communication, community, and creating work that people can trust.
+            </p>
+          </div>
         </div>
-    </section>
+        <div class="col-lg-5" data-aos="fade-left">
+          <div class="about-img-grid">
+            <img src="assets/me1.jpeg" alt="Me 1" class="about-img-item tall-img shadow" />
+            <img src="assets/me2.jpeg" alt="Me 2" class="about-img-item shadow" />
+            <img src="assets/me3.jpeg" alt="Me 3" class="about-img-item shadow" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer class="py-4 border-top text-center">
-        <p class="mb-0 text-muted small">&copy; 2026 Student Portfolio</p>
-    </footer>
+  <section id="activities" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="display-5">Achievements & Activities</h2>
+        <div style="width: 60px; height: 3px; background: var(--primary-color); margin: 20px auto;"></div>
+      </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
-    </script>
+      <div class="row project-row g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="ratio ratio-16x9 shadow-lg rounded-4 overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/EQHKzW_oHdg?rel=0&modestbranding=1" title="HealingHues Video" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-6 project-text ps-lg-5" data-aos="fade-left">
+          <div class="position-relative">
+            <span class="project-number">01</span>
+            <span class="category-label">Youth Mental Health</span>
+            <h3 class="mb-3">HealingHues</h3>
+            <p class="text-muted">
+              Our project focused on developing a youth mental health app, guided by market research and trend analysis.
+              Strengths include free access and anonymity, removing financial and social barriers to support. Opportunities lie in the
+              growing demand for mental health tools among tech-savvy teens and the influence of social media in promoting mental wellness.
+              Key threats include age restrictions and parental concerns about screen time and online safety.
+            </p>
+            <p class="text-muted mb-0">
+              This journey emphasized the importance of balancing accessibility, privacy, and engagement to create a meaningful, trusted platform
+              that supports adolescent mental health in a safe and inclusive digital environment.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row project-row g-5 flex-lg-row-reverse">
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="project-media">
+            <img src="assets/projects/gpt.gif" alt="ProjectGPT+" />
+          </div>
+        </div>
+        <div class="col-lg-6 project-text pe-lg-5" data-aos="fade-right">
+          <div class="position-relative">
+            <span class="project-number">02</span>
+            <span class="category-label">AI Education</span>
+            <h3 class="mb-3">ProjectGPT+</h3>
+            <p class="text-muted mb-3">
+              Transforming Curiosity Into Learning — ProjectGPT+ empowers learners with AI-driven storybooks, immersive content,
+              and smart quizzes. We combine creativity with technology to make education engaging, personalized, and impactful.
+            </p>
+            <div class="text-muted mb-3">
+              <strong>Explore Features</strong>
+              <ul class="mb-0">
+                <li><strong>AI Storybooks:</strong> Personalized narratives that explain concepts with clarity.</li>
+                <li><strong>Audio & Visuals:</strong> Immersive experiences with narration and illustrations.</li>
+                <li><strong>Smart Quizzes:</strong> Interactive practice that adapts to each learner’s pace.</li>
+                <li><strong>Progress Dashboard:</strong> Track achievements and discover new learning opportunities.</li>
+              </ul>
+            </div>
+            <p class="text-muted mb-0">
+              <strong>Our First Client:</strong> Apas Camp Lapu-Lapu Elementary School (Cebu Province, Philippines). The school faces barriers in accessing textbooks and learning resources, and we are committed to supporting solutions that empower both students and educators.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row project-row g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="project-media">
+            <img src="assets/projects/langer.png" alt="Project Langer" />
+          </div>
+        </div>
+        <div class="col-lg-6 project-text ps-lg-5" data-aos="fade-left">
+          <div class="position-relative">
+            <span class="project-number">03</span>
+            <span class="category-label">Behavioral Research</span>
+            <h3 class="mb-3">Project Langer</h3>
+            <p class="text-muted mb-0">
+              Researched mindfulness and investor decision-making under pressure; developed an STP app modeling scarcity-driven stress
+              under Prof. Ellen Langer’s guidance at Harvard University. The project empirically evaluated how induced mindfulness improves
+              choice consistency, satisfaction, and reduces post-decision regret in simulated, high-pressure consumer decision-making tasks.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="more" class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="display-5">More About Me</h2>
+        <p class="text-muted">A few moments that shaped my interests—learning, creating, and leading.</p>
+      </div>
+
+      <div class="more-columns" data-aos="fade-up">
+        <a href="assets/more/more1.jpeg" class="more-item glightbox"><img src="assets/more/more1.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more2.jpeg" class="more-item glightbox"><img src="assets/more/more2.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more3.jpeg" class="more-item glightbox"><img src="assets/more/more3.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more4.jpeg" class="more-item glightbox"><img src="assets/more/more4.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more5.jpeg" class="more-item glightbox"><img src="assets/more/more5.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more6.jpeg" class="more-item glightbox"><img src="assets/more/more6.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more7.jpeg" class="more-item glightbox"><img src="assets/more/more7.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more8.jpeg" class="more-item glightbox"><img src="assets/more/more8.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more9.jpeg" class="more-item glightbox"><img src="assets/more/more9.jpeg" alt="Gallery"></a>
+        <a href="assets/more/more10.jpeg" class="more-item glightbox"><img src="assets/more/more10.jpeg" alt="Gallery"></a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="py-5 border-top bg-white">
+    <div class="container text-center">
+      <h2 class="mb-4">Let's Connect</h2>
+      <p class="text-muted mb-2">Open for collaborations in business, art, and research.</p>
+      <p><a class="text-dark text-decoration-none fw-semibold" href="mailto:yourname@example.com">yourname@example.com</a></p>
+      <p class="mb-0 text-muted small">&copy; 2026 Jolie Portfolio</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    const lightbox = GLightbox({ selector: '.glightbox' });
+
+    window.addEventListener('load', () => {
+      new bootstrap.ScrollSpy(document.body, {
+        target: '#navbarMain',
+        offset: 100
+      });
+    });
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        const navEl = document.getElementById("navbarNav");
+        const bsCollapse = bootstrap.Collapse.getInstance(navEl);
+        if (bsCollapse) bsCollapse.hide();
+      });
+    });
+  </script>
 </body>
 </html>
