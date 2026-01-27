@@ -136,11 +136,11 @@
 
     /* --- About --- */
     .about-card {
-      background: #fff;
+/*      background: #fff;
       border: 1px solid rgba(0,0,0,0.05);
-      border-radius: 20px;
+      border-radius: 20px;*/
       padding: 40px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+/*      box-shadow: 0 20px 40px rgba(0,0,0,0.03);*/
     }
     .about-img-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .about-img-item { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
@@ -187,6 +187,13 @@ img, iframe, video, .container, .row { max-width: 100%; }
 
 .hero-section::before,
 .hero-section::after { max-width: 100%; }
+
+/*@media (max-width: 768px) {
+  #activities p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}*/
   </style>
 </head>
 
@@ -222,7 +229,7 @@ img, iframe, video, .container, .row { max-width: 100%; }
 </h1>
           <p class="text-muted lead mb-4">
 Hi, I’m Jolie. I’m curious about how people think, why they make decisions, and how data helps us understand real human behavior.          </p>
-          <div class="d-flex gap-3 mt-4">
+          <div class="d-flex gap-3 mt-4 mb-5 mb-md-0">
             <a href="#activities" class="btn btn-primary-custom">View My Work <i class="bi bi-arrow-down ms-2"></i></a>
           </div>
         </div>
