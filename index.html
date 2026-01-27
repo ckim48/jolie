@@ -177,6 +177,16 @@
 
     @media (max-width: 992px) { .more-columns { column-count: 2; } }
     @media (max-width: 576px) { .more-columns { column-count: 1; } }
+
+html, body { width: 100%; overflow-x: hidden; }
+
+img, iframe, video, .container, .row { max-width: 100%; }
+
+.row { margin-left: 0; margin-right: 0; }
+.row > * { padding-left: .75rem; padding-right: .75rem; }
+
+.hero-section::before,
+.hero-section::after { max-width: 100%; }
   </style>
 </head>
 
@@ -363,6 +373,51 @@ Hi, I’m Jolie. I’m curious about how people think, why they make decisions, 
           </div>
         </div>
       </div>
+<div class="row project-row g-5">
+  <!-- Video -->
+
+
+  <!-- Text -->
+  <div class="col-lg-6 project-text ps-lg-5" data-aos="fade-right">
+    <div class="position-relative">
+      <span class="project-number">04</span>
+<span class="category-label">Psychology-Driven Maternal Care</span>
+
+      <h3 class="mb-3">Mothercare </h3>
+
+      <p class="text-muted">
+        Mothercare is a digital support platform designed to help mothers and caregivers navigate real-life
+        challenges through AI-guided consultation, practical resources, and structured community spaces. The platform
+        prioritizes accessibility, privacy, and emotional safety, offering support without stigma or judgment.
+      </p>
+
+      <p class="text-muted mb-0">
+        This project highlights how compassionate AI and thoughtful design can empower families with clear guidance,
+        informed decision-making, and shared understanding—creating a trusted environment that supports long-term
+        wellbeing for mothers and caregivers in everyday life.
+      </p>
+
+      <div class="mt-4">
+        <a
+          href="https://healinghue.pythonanywhere.com/"
+          target="_blank"
+          class="btn btn-primary-custom">
+          View Platform <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+    <div class="col-lg-6" data-aos="fade-left">
+    <div class="ratio ratio-16x9 shadow-lg rounded-4 overflow-hidden">
+      <iframe
+        src="https://www.youtube.com/embed/EQHKzW_oHdg?rel=0&modestbranding=1"
+        title="Mothercare Consulting Preview"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
     </div>
   </section>
 
